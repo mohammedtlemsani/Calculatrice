@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class MainActivity extends AppCompatActivity {
     Calculate calculate = new Calculate();
@@ -40,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,data);
         listView.setAdapter(stringArrayAdapter);
         List<String> stringNumbers = new ArrayList<>();
-        button1.setOnClickListener(v -> {
-            textView.append("1");
-        });
+        button1.setOnClickListener(v -> textView.append("1"));
         button2.setOnClickListener(v -> {
             textView.clearComposingText();
             textView.append("2");
@@ -101,8 +99,10 @@ public class MainActivity extends AppCompatActivity {
         });
         buttonEqual.setOnClickListener(v->{
             stringNumbers.add(textView.getText().toString());
-            System.out.println(stringNumbers);
+
             String result=String.valueOf(calculate.calculer(stringNumbers));
+            stringArrayAdapter.add(stringNumbers.toString() +" = "+ result);
+            stringArrayAdapter.notifyDataSetChanged();
             stringNumbers.clear();
             textView.setText(result);
         });

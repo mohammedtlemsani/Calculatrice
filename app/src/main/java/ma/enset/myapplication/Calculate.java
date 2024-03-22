@@ -20,7 +20,7 @@ public class Calculate {
                 case "-":
                     result -= operand;
                     break;
-                case "*":
+                case "x":
                     result *= operand;
                     break;
                 case "/":

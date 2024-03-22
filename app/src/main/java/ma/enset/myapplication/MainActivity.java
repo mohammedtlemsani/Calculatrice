@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,data);
         listView.setAdapter(stringArrayAdapter);
         List<String> stringNumbers = new ArrayList<>();
-        AtomicInteger result = new AtomicInteger();
         button1.setOnClickListener(v -> {
             textView.append("1");
         });
@@ -76,20 +75,40 @@ public class MainActivity extends AppCompatActivity {
             textView.clearComposingText();
             textView.append("9");
         });
+        button0.setOnClickListener(v -> {
+            textView.clearComposingText();
+            textView.append("0");
+        });
         buttonPlus.setOnClickListener(v -> {
             stringNumbers.add(textView.getText().toString());
             stringNumbers.add("+");
             textView.setText("");
         });
+        buttonX.setOnClickListener(v -> {
+            stringNumbers.add(textView.getText().toString());
+            stringNumbers.add("x");
+            textView.setText("");
+        });
+        buttonDiv.setOnClickListener(v -> {
+            stringNumbers.add(textView.getText().toString());
+            stringNumbers.add("/");
+            textView.setText("");
+        });
+        buttonMinus.setOnClickListener(v -> {
+            stringNumbers.add(textView.getText().toString());
+            stringNumbers.add("-");
+            textView.setText("");
+        });
         buttonEqual.setOnClickListener(v->{
             stringNumbers.add(textView.getText().toString());
-            result.set(Integer.parseInt(stringNumbers.get(0))); // Initialize result with the first number
-            textView.setText(String.valueOf(calculate.calculer(stringNumbers)));
+            System.out.println(stringNumbers);
+            String result=String.valueOf(calculate.calculer(stringNumbers));
+            stringNumbers.clear();
+            textView.setText(result);
         });
         buttonClear.setOnClickListener(v->{
             stringNumbers.clear();
             textView.setText("");
-            result.set(0);
         });
 
 
